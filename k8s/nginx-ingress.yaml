@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: localhost  # Replace with your domain or use a bare IP (optional)
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-service  # Name of the service exposing NGINX
+            port:
+              number: 80
+---
+# # Optional: Add a TLS configuration
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: nginx-ingress-tls
+# spec:
+#   tls:
+#   - hosts:
+#     - localhost  # Replace with your domain
+#     secretName: nginx-tls-secret  # TLS secret for HTTPS (create this separately)
