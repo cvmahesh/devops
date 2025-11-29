@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Node Frontend</title>
+</head>
+<body>
+    <h1>Frontend calling Node.js backend</h1>
+
+    <button onclick="callApi()">Get Message</button>
+
+    <p id="result"></p>
+
+    <script>
+        function callApi() {
+            fetch("http://localhost:3000/api/message")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("result").innerText = data.message;
+                })
+                .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html>
