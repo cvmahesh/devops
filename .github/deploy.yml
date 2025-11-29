@@ -1,0 +1,38 @@
+name: Build and Package Node App
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install dependencies
+        run: npm install
+
+      # optional: if you have a frontend build
+      # - name: Build frontend
+      #   run: npm run build
+
+      - name: Create deployment package
+        run: |
+          mkdir -p deploy
+          cp -r server.js package.json node_modules public deploy/
+          cd deploy
+          zip -r ../node-app-deploy.zip .
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-app-binary
+          path: node-app-deploy.zip
