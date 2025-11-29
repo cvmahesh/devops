@@ -24,12 +24,21 @@ jobs:
       # - name: Build frontend
       #   run: npm run build
 
+      # - name: Create deployment package
+      #   run: |
+      #     mkdir -p deploy
+      #     cp -r server.js package.json node_modules public deploy/
+      #     cd deploy
+      #     zip -r ../node-app-deploy.zip .
+
+
       - name: Create deployment package
         run: |
           mkdir -p deploy
-          cp -r server.js package.json node_modules public deploy/
+          cp -r node/server.js node/package.json node/node_modules node/public deploy/
           cd deploy
           zip -r ../node-app-deploy.zip .
+
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
