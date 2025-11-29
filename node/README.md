@@ -17,12 +17,12 @@ A. package.json (optional)
 
 Run this in your terminal:
 
-'''
+```
 npm init -y
 npm install express
 npm install cors
+```
 
-'''
 
 
 📌 2. Frontend (HTML + JavaScript)
@@ -30,11 +30,10 @@ npm install cors
 Create a file → index.html
 
 
-3. how to run
-'''
+📌  3. how to run
+```
 node server.js
-
-''' 
+```
 
 
 Now your backend is live →
